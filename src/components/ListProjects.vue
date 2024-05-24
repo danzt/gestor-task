@@ -37,7 +37,7 @@ const handleSaveProject = async (project: Project) => {
   await projectsStore.fetchProjects();
   Notify.create({
     type: 'positive',
-    message: 'Proyecto actualizado con éxito'
+    message: `${project.name}`
   });
 };
 const handleProjectClick = (project: Project) => {
@@ -139,7 +139,7 @@ onMounted(async () => {
     </div>
     <ModalCreate
       v-model:show="showDialog"
-      title="Nuevo Proyecto"
+      title= "Proyecto"
     >
       <FormNewProject
         :projectUpdate="projectToEdit"
