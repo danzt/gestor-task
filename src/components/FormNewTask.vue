@@ -9,7 +9,7 @@ const projectTask = reactive({
   id: generateId(),
   name: '',
   description: '',
-  status: false
+  status: ''
 });
 
 const handleSave = () => {
