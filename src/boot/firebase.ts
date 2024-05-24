@@ -2,13 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 
 const firebaseConfig: Record<string, unknown> = {
-  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
-  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.VUE_APP_FIREBASE_APP_ID,
-  measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID,
+  apiKey: 'AIzaSyAQlUYlNfjkJD13_E-Ok-K3dyhfirExX1U',
+  authDomain: 'task-gestor-e6603.firebaseapp.com',
+  projectId: 'task-gestor-e6603',
+  storageBucket: 'task-gestor-e6603.appspot.com',
+  messagingSenderId: '467077611957',
+  appId: '1:467077611957:web:87648dee044ad3c56ad9fc',
+  measurementId: 'G-P8KDSCP5QM'
 };
 
 const app = initializeApp(firebaseConfig);
