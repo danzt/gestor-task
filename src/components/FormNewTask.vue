@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import { generateId } from 'src/helpers/generateId';
+import { Notify } from 'quasar';
 
 const emit = defineEmits(['save', 'close']);
 
@@ -12,6 +13,13 @@ const projectTask = reactive({
 });
 
 const handleSave = () => {
+  if (projectTask.name === '' || projectTask.description === '') {
+    Notify.create({
+      type: 'negative',
+      message: 'Campos obligatorios'
+    });
+    return;
+  }
   emit('save', projectTask);
 };
 
@@ -33,6 +41,7 @@ const handleClose = () => {
               outlined
               label="Nombre de la tarea"
               v-model="projectTask.name"
+              :rules="[val => !!val || 'Campo obligatorio']"
             />
           </q-item>
         </div>
@@ -44,6 +53,7 @@ const handleClose = () => {
               outlined
               label="Descripción de la tarea"
               v-model="projectTask.description"
+              :rules="[val => !!val || 'Campo obligatorio']"
             />
           </q-item>
         </div>
@@ -55,6 +65,7 @@ const handleClose = () => {
               label="Estado de la tarea"
               v-model="projectTask.status"
               :options="['Pendiente', 'En progreso', 'Completado']"
+              :rules="[val => !!val || 'Campo obligatorio']"
             />
           </q-item>
         </div>

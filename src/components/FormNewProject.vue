@@ -2,6 +2,7 @@
 import { onMounted, reactive } from 'vue';
 import { Project } from 'src/lib/types';
 import { generateId } from 'src/helpers/generateId';
+import { Notify } from 'quasar';
 
 interface Props {
   projectUpdate?: Project;
@@ -23,6 +24,13 @@ const emit = defineEmits<{
 }>()
 
 const handleSave = () => {
+  if (projectForm.name === '' || projectForm.description === '') {
+    Notify.create({
+      type: 'negative',
+      message: 'Campos obligatorios'
+    });
+    return;
+  }
   if (projectForm) {
     emit('save', projectForm);
   }
@@ -56,6 +64,7 @@ onMounted(() => {
               outlined
               label="Nombre del Proyecto"
               v-model="projectForm.name"
+              :rules="[val => !!val || 'Campo obligatorio']"
             />
           </q-item>
         </div>
@@ -67,6 +76,7 @@ onMounted(() => {
               outlined
               label="Descripción del Proyecto"
               v-model="projectForm.description"
+              :rules="[val => !!val || 'Campo obligatorio']"
             />
           </q-item>
         </div>
