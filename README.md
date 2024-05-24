@@ -39,3 +39,7 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
+### Deploy to Vercel
+[gestor-task.vercel.app
+](https://gestor-task.vercel.app/)
