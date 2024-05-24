@@ -105,17 +105,17 @@ onMounted(async () => {
     <div class="q-pa-md q-gutter-md row items-center justify-center">
       <q-btn color="orange" size="sm" label="Pendiente">
         <q-badge color="grey-10" floating transparent>
-         {{ countTasksByStatus['Pendiente'] }}
+          {{ countTasksByStatus['Pendiente'] ?? 0 }}
         </q-badge>
       </q-btn>
       <q-btn color="blue" size="sm" label="En progreso">
         <q-badge color="grey-10" floating transparent>
-          {{ countTasksByStatus['En progreso'] }}
+          {{ countTasksByStatus['En progreso'] ?? 0 }}
         </q-badge>
       </q-btn>
       <q-btn color="green" size="sm" label="Completado">
         <q-badge color="grey-10" floating transparent>
-          {{ countTasksByStatus['Completado'] }}
+          {{ countTasksByStatus['Completado'] ?? 0 }}
         </q-badge>
       </q-btn>
     </div>
