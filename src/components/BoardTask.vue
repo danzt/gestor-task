@@ -101,6 +101,17 @@ onMounted(async () => {
 
 
 <template>
+  <div>
+
+    <q-btn
+      class="q-ma-md"
+      color="primary"
+      icon="arrow_back"
+      @click="$router.go(-1)"
+    >
+      Gestionar proyectos
+    </q-btn>
+  </div>
   <div class="q-pa-md" style="width: 60%">
     <div class="q-pa-md q-gutter-md row items-center justify-center">
       <q-btn color="orange" size="sm" label="Pendiente">
@@ -120,7 +131,7 @@ onMounted(async () => {
       </q-btn>
     </div>
     <q-table
-      class="q-pa-md"
+      class="q-pa-md q-gutter-lg"
       title="Tareas"
       :rows="tasks"
       :columns="columns"
@@ -143,7 +154,7 @@ onMounted(async () => {
           Nueva Tarea
         </q-btn>
         <q-space />
-        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+        <q-input borderless dense debounce="300" v-model="filter" placeholder="Buscar">
           <template v-slot:append>
             <q-icon name="search" />
           </template>
@@ -152,7 +163,7 @@ onMounted(async () => {
 
       <template v-slot:item="props">
         <div
-          class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition q-mt-md"
+          class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-4 grid-style-transition q-mt-md"
           :style="props.selected ? 'transform: scale(0.95);' : ''"
         >
           <q-card bordered flat :class="props.selected ? ($q.dark.isActive ? 'bg-grey-9' : 'bg-grey-2') : ''">
@@ -166,7 +177,7 @@ onMounted(async () => {
                   <q-item-label>{{ col.label }}</q-item-label>
                 </q-item-section>
                 <q-item-section side>
-                  <q-item-label caption v-if="taskBeingEdited.id !== props.row.id">{{ props.row[col.name] }}
+                  <q-item-label class="truncate" caption v-if="taskBeingEdited.id !== props.row.id">{{ props.row[col.name] }}
                   </q-item-label>
                   <div v-else>
                     <q-input v-model="taskBeingEdited[col.name]" v-if="col.name !== 'status'" />
@@ -202,4 +213,9 @@ onMounted(async () => {
 <style lang="sass">
 .grid-style-transition
   transition: transform .28s, background-color .28s
+
+.truncate
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
 </style>

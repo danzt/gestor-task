@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import {useQuasar} from 'quasar';
 import { Notify } from 'quasar';
 import ModalCreate from 'components/ModalCreate.vue';
 import FormNewProject from 'components/FormNewProject.vue';
@@ -10,18 +11,16 @@ import { Project } from 'src/lib/types';
 import { storeToRefs } from 'pinia';
 
 const router = useRouter();
-
+const $q = useQuasar();
 const projectsStore = useProjectStore();
 const {projects} = storeToRefs(projectsStore);
-const projectToEdit = ref<Project | null>(null);
 
-// const projects = ref([]);
+const projectToEdit = ref<Project | null>(null);
 const initialPagination = {
   rowsPerPage: 10
 };
 const showDialog = ref(false);
 const filter = ref('');
-
 const handleCloseModal = () => {
   projectToEdit.value = null;
   showDialog.value = false;
@@ -45,7 +44,6 @@ const handleProjectClick = (project: Project) => {
 };
 
 const deleteRow = async(row: Project) => {
-  console.log('deleteRow', row);
   $q.dialog({
     title: 'Confirmar',
     message: '¿Está seguro que desea eliminar este proyecto?',
